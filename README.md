@@ -25,6 +25,13 @@ A bare-metal controller that keeps a DC motor's **speed and direction profile in
 
 Everything is written at register level: a custom start-up file and linker script, an SPI driver, an EEPROM driver, PWM and the motor control logic, with no vendor HAL, RTOS or C library.
 
+## Proteus simulation
+
+<p align="center">
+  <img src="docs/images/proteus_schematic.png" alt="Proteus schematic of the complete circuit" width="100%">
+</p>
+<p align="center"><sub>Complete circuit in Proteus: LPC2138, 25LC256 SPI EEPROM, L293D driver, DC motor and status LED</sub></p>
+
 ## Highlights
 
 | Area | Implementation |
