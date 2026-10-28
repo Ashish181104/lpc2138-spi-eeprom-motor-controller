@@ -137,7 +137,31 @@ Output files: `build/firmware.elf` (with debug symbols) and `build/firmware.hex`
   </tr>
 </table>
 
+### EEPROM contents after power-up
+
+The 25LC256 memory window in Proteus shows the profile stored by the firmware, byte for byte:
+
+<table>
+  <tr>
+    <td width="42%"><img src="docs/images/eeprom_memory_dump.png" alt="25LC256 memory dump in Proteus"></td>
+    <td>
+
+| Address | Bytes | Meaning |
+|---|---|---|
+| `0x00` | `4D 50 02 04` | "MP", version 2, 4 steps |
+| `0x04` | `01 4B 01F4 0BB8` | Forward, 75 %, 500 ms, 3000 ms |
+| `0x0A` | `00 00 012C 03E8` | Stop, 0 %, 300 ms, 1000 ms |
+| `0x10` | `02 28 01F4 0BB8` | Reverse, 40 %, 500 ms, 3000 ms |
+| `0x16` | `00 00 012C 03E8` | Stop, 0 %, 300 ms, 1000 ms |
+| `0x1C` | `47` | Checksum (all 29 bytes sum to 0 mod 256) |
+| `0x1D…` | `FF` | Unused (erased) |
+
+  </td>
+  </tr>
+</table>
+
 - **EEPROM self-test passed in Proteus:** two patterns, 0x5A and 0xA5, written and read back correctly.
+- **Profile stored correctly:** the EEPROM dump above matches the default profile exactly, including the checksum.
 - **Motor profile ran in Proteus,** with the profile loaded from EEPROM and the motor turning.
 - **Fault handling verified in emulation:** blank, corrupt, old-version and unresponsive EEPROM, and a stalled SPI clock.
 
