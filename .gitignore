@@ -1,0 +1,19 @@
+# Build output
+build/
+*.o
+*.elf
+*.hex
+*.map
+
+# Proteus backups and workspace files
+*.pdsbak
+*.workspace
+Last Loaded *
+Backup Of *
+
+# OS / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+.vscode/
